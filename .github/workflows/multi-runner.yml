@@ -11,8 +11,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Build
-        run: echo "Build on GitHub-hosted runner"
+
+      - name: Check Build Machine
+        run: |
+          echo "BUILD JOB"
+          hostname
+          uname -a
 
   test:
     needs: build
@@ -20,8 +24,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Run Tests
-        run: echo "Tests on self-hosted Linux runner"
+
+      - name: Check Test Machine
+        run: |
+          echo "TEST JOB"
+          hostname
+          uname -a
 
   deploy:
     needs: test
@@ -29,5 +37,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Deploy
-        run: echo "Deploying from EC2 runner"
+
+      - name: Check Deploy Machine
+        run: |
+          echo "DEPLOY JOB"
+          hostname
+          uname -a
